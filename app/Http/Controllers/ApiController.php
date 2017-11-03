@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Api;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 /**
@@ -116,6 +118,34 @@ class ApiController extends Controller
     protected function respondSuccess()
     {
         return Api::respondSuccess();
+    }
+
+    /**
+     * @param Builder $query
+     * @return LengthAwarePaginator
+     */
+    protected function paginate(Builder $query)
+    {
+        $perPage = (int)$this->request->pageSize ?: 24;
+        $currentPage = (int)$this->request->page ?: 1;
+
+        return $query->paginate($perPage, null, null, $currentPage);
+    }
+
+    /**
+     * @param LengthAwarePaginator $data
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithPagination(LengthAwarePaginator $data)
+    {
+        return response()->json([
+            'pagination' => [
+                'total' => $data->total(),
+                'page_size' => $data->perPage(),
+                'current_page' => $data->currentPage(),
+            ],
+            'items' => $data->items()
+        ]);
     }
 
 }

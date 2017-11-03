@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
+    const STATUS_APPROVED = 1;
+
     protected $fillable = [
         'name',
         'description',

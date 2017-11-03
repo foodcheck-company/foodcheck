@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\HomeRepository;
+use App\Http\Repositories\RestaurantRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -12,28 +12,24 @@ use Illuminate\Http\Request;
 class HomeController extends ApiController
 {
     /**
-     * @var HomeRepository
+     * @var RestaurantRepository
      */
     protected $repository;
 
-    /**
-     * ContestController constructor.
-     */
-    public function __construct(Request $request)
+
+    public function __construct(Request $request, RestaurantRepository $restaurantRepository)
     {
         parent::__construct($request);
 
-        $this->repository = new HomeRepository();
+        $this->repository = $restaurantRepository;
     }
 
     public function getRestaurantsList()
     {
         $restaurants = $this->repository->getRestaurantsList();
 
-        if (!$restaurants) {
-            return $this->respondBadRequest('Something went wrong!');
-        } else {
-            return $this->respondSuccess($restaurants);
-        }
+        return $restaurants
+            ? $this->respondWithPagination($restaurants)
+            : $this->respondWithError('Restaurants not found');
     }
 }

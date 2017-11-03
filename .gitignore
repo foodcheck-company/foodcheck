@@ -6,6 +6,7 @@
 /.idea
 .env
 _ide_helper.php
+_ide_helper_models.php
 .phpstorm.meta.php
 .DS_STORE
 id_rsa
