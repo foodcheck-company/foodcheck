@@ -129,6 +129,9 @@ class ApiController extends Controller
         $perPage = (int)$this->request->pageSize ?: 24;
         $currentPage = (int)$this->request->page ?: 1;
 
+        if ($currentPage > (ceil($query->toBase()->getCountForPagination() / $perPage)))
+            $currentPage = 1;
+
         return $query->paginate($perPage, null, null, $currentPage);
     }
 
