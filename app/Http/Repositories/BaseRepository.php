@@ -11,5 +11,5 @@ abstract class BaseRepository
     protected $model;
 
     abstract function getAll();
-    abstract function getById(int $id);
+    abstract function findById(int $id);
 }

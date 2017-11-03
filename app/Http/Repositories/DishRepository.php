@@ -21,7 +21,7 @@ class DishRepository extends \App\Http\Repositories\BaseRepository
             ->orderByDesc('created_at');
     }
 
-    public function getById(int $id)
+    public function findById(int $id)
     {
         return $this->model
             ->findOrFail($id)

@@ -11,7 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Restaurant::class, 10)->create();
-        factory(\App\Models\Dish::class, 30)->create();
+        factory(\App\Models\Restaurant::class, 10)->create()->each(function ($query) {
+            $query->dishes()->saveMany(factory(\App\Models\Dish::class, 5)->make());
+        });
     }
 }

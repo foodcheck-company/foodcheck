@@ -17,10 +17,11 @@ class RestaurantRepository extends BaseRepository
     {
         return $this->model
             ->where('status', Restaurant::STATUS_APPROVED)
-            ->orderByDesc('created_at');
+            ->orderByDesc('created_at')
+            ->with('dishes');
     }
 
-    public function getById(int $id)
+    public function findById(int $id)
     {
         return $this->model
             ->findOrFail($id)
