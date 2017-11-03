@@ -6,10 +6,25 @@ use App\Models\Restaurant;
 
 class RestaurantRepository
 {
-    public function getRestaurantsList()
-    {
-        $restaurants = Restaurant::query()->where('status', Restaurant::STATUS_APPROVED)->orderByDesc('created_at')->get();
+    protected $model;
 
-        return $restaurants;
+    public function __construct(Restaurant $restaurant)
+    {
+        $this->model = $restaurant->query();
+    }
+
+    public function getAll()
+    {
+        return $this->model
+            ->where('status', Restaurant::STATUS_APPROVED)
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
+    public function getById(int $id)
+    {
+        return $this->model
+            ->findOrFail($id)
+            ->get();
     }
 }
