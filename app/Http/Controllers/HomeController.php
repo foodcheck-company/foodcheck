@@ -26,7 +26,8 @@ class HomeController extends ApiController
 
     public function getRestaurantsList()
     {
-        $restaurants = $this->repository->getRestaurantsList();
+        $restaurants = $this->repository->getAll();
+        $restaurants = $this->paginate($restaurants);
 
         return $restaurants
             ? $this->respondWithPagination($restaurants)

@@ -17,9 +17,9 @@ class CreateRestaurantsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->timestamp('work_time_up');
-            $table->timestamp('work_time_end');
-            $table->timestamp('delivery_time');
+            $table->timestamp('work_time_up')->nullable();
+            $table->timestamp('work_time_end')->nullable();
+            $table->timestamp('delivery_time')->nullable();
             $table->string('link');
             $table->integer('rating');
             $table->integer('status');

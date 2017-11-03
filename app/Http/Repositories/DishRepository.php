@@ -1,22 +1,23 @@
 <?php
-
+/**
+ * @author: Viktoria Zhukova
+ */
 namespace App\Http\Repositories;
 
-use App\Models\Restaurant;
+use App\Models\Dish;
 
-class RestaurantRepository extends BaseRepository
+class DishRepository extends \App\Http\Repositories\BaseRepository
 {
     protected $model;
 
-    public function __construct(Restaurant $restaurant)
+    public function __construct(Dish $dish)
     {
-        $this->model = $restaurant->query();
+        $this->model = $dish->query();
     }
 
     public function getAll()
     {
         return $this->model
-            ->where('status', Restaurant::STATUS_APPROVED)
             ->orderByDesc('created_at');
     }
 

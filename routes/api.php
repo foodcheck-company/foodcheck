@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +15,7 @@ Route::get('/', function() {
 return view('welcome');
 });
 
-Route::get('/index', 'HomeController@getRestaurantsList');
+Route::get('/restaurants', 'HomeController@getRestaurantsList');
+Route::get('/dishes', 'DishesController@getDishesList');
 
 
