@@ -18,7 +18,7 @@ class RestaurantRepository extends BaseRepository
         return $this->model
             ->where('status', Restaurant::STATUS_APPROVED)
             ->orderByDesc('created_at')
-            ->with('dishes');
+            ->with(['positions.dishes']);
     }
 
     public function findById(int $id)

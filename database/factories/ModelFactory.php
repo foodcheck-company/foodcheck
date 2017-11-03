@@ -27,7 +27,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Restaurant::class, function (Faker\Generator $faker) {
 
     return [
-        'name' => $faker->userName,
+        'name' => ucfirst($faker->lastName),
         'description' => $faker->realText(),
         'link' => $faker->url,
         'rating' => random_int(3, 10),
@@ -36,14 +36,26 @@ $factory->define(App\Models\Restaurant::class, function (Faker\Generator $faker)
 });
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Position::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => ucfirst($faker->safeColorName) . ' ' . $faker->monthName,
+        'description' => $faker->realText()
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Dish::class, function (Faker\Generator $faker) {
 
     return [
-        'name' => $faker->safeColorName . ' ' . $faker->firstNameFemale,
+        'name' => ucfirst($faker->safeColorName) . ' ' . $faker->firstNameFemale,
         'description' => $faker->realText(),
         'size' => array_random(['small', 'medium', 'big', 'super-big', 'XXL']),
         'weight' => random_int(1, 10) * 100,
         'price' => random_int(10, 50) * 10 + 9,
         'qualify' => random_int(4, 10),
+        'position_id' => function () {
+            return factory(App\Models\Position::class)->create()->id;
+        }
     ];
 });

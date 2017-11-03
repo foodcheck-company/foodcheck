@@ -15,7 +15,9 @@ Route::get('/', function() {
 return view('welcome');
 });
 
-Route::get('/restaurants', 'HomeController@getRestaurantsList');
-Route::get('/dishes', 'DishesController@getDishesList');
+Route::get('/restaurants', 'HomeController@index');
+Route::get('/dishes', 'DishesController@index');
+
+Route::post('/images', 'ImagesController@store');
 
 

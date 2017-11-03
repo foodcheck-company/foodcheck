@@ -12,11 +12,12 @@ class Dish extends Model
         'size',
         'weight',
         'price',
-        'qualify'
+        'qualify',
+        'position_id'
     ];
 
-    public function restaurants()
+    public function position()
     {
-        return $this->belongsToMany(Restaurant::class);
+        return $this->belongsTo(Position::class);
     }
 }

@@ -23,7 +23,7 @@ class DishesController extends ApiController
         $this->repository = $dishRepository;
     }
 
-    public function getDishesList()
+    public function index()
     {
         $dishes = $this->repository->getAll();
         $dishes = $this->paginate($dishes);

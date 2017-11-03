@@ -4,15 +4,15 @@
  */
 namespace App\Http\Repositories;
 
-use App\Models\Dish;
+use App\Models\Position;
 
-class DishRepository extends BaseRepository
+class PositionRepository extends BaseRepository
 {
     protected $model;
 
-    public function __construct(Dish $dish)
+    public function __construct(Position $position)
     {
-        $this->model = $dish->query();
+        $this->model = $position->query();
     }
 
     public function getAll()

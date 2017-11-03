@@ -20,8 +20,8 @@ class Restaurant extends Model
         'status',
     ];
 
-    public function dishes()
+    public function positions()
     {
-        return $this->belongsToMany(Dish::class);
+        return $this->belongsToMany(Position::class);
     }
 }
