@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        /**
+         * Create admin
+         */
+        factory(\App\Models\User::class)->create(['password' => bcrypt('qazxsw'), 'email' => 'admin@admin.com']);
+
+
         factory(\App\Models\Restaurant::class, 10)->create()->each(function ($query) {
             $query->positions()->saveMany(factory(\App\Models\Position::class, 5)->make());
         });

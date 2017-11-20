@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Repositories\RestaurantRepository;
 use Illuminate\Http\Request;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
  * Class HomeController
  * @package App\Http\Controllers
  */
-class HomeController extends ApiController
+class RestaurantsController extends ApiController
 {
     /**
      * @var RestaurantRepository

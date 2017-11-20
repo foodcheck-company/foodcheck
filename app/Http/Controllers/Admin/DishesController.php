@@ -1,25 +1,22 @@
 <?php
 /**
- * @author: Viktoria Zhukova
+ * @author: Viktoria Zhukova <v.zhukova@lucky-labs.com>
  */
+namespace App\Http\Controllers\Admin;
 
-namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use App\Http\Repositories\DishRepository;
 use Illuminate\Http\Request;
 
-class DishesController extends ApiController
+class DishesController extends Controller
 {
     /**
      * @var DishRepository
      */
     protected $repository;
 
-
     public function __construct(Request $request, DishRepository $dishRepository)
     {
-        parent::__construct($request);
-
         $this->repository = $dishRepository;
     }
 
@@ -32,4 +29,5 @@ class DishesController extends ApiController
             ? $this->respondWithPagination($dishes)
             : $this->respondWithError('Restaurants not found');
     }
+
 }
